@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN";
+}
+
+a {
+  text-decoration: none;
+}
+
+ /*↓このCSSにより全ての要素のレイアウト崩れを防げる*/
+* {
+  box-sizing: border-box;    
+/*要素自体の大きさとpadding、borderまでをひとまとめにすることができる*/
+}
+
+
+/*大まかに分けた区画のすぐ下にcontainerクラスのdivを作っておくと、このクラスのCSSで幅などを一気に統一できる*/
+.container {
+  max-width: 1170px;  /*このCSSで画面幅の上限を決める、そして↓のwidth100%で上限内で幅がピッタリになるようにする*/
+  width: 100%; /*もともとは1170pxで固定していたが、100％にすることで画面幅に合うようになる(ただし要素の修正は必要)*/
+  padding: 0 15px;
+  margin: 0 auto;   /*左右のmarginをautoにすることで中央寄せになる、左右にのみ適用可能*/
+}
+
+header {
+  height: 65px;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9); /*rgbaを使うことで背景色のみの透明度が調製できる*/
+
+  position: fixed;    /*ポジションの固定、top,left等と併用して固定する場所を決める*/
+  top: 0px;
+
+  z-index: 10;        /*z-indexで重なりを調整、整数値で表し、大きい値が上に上にくる*/
+                      /*z-indexは必ずpositionプロパティと併用しないといけない*/
+}
+
+.logo {
+  width: 124px;
+  margin-top: 20px;
+}
+
+.header-left {
+  float: left;
+}
+
+.menu-icon {
+  color: white;
+  float: right;
+  font-size: 25px;
+  padding: 21px 0;
+  /* displayをnoneに指定することでメニューアイコンが表示されない→スマホ用でのみ表示されるようにする */
+  display: none;
+}
+
+.header-right {
+  float: right;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.5s;                           /*transitionで変化の様子を調節できる*/
+}
+
+.header-right:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.header-right a {
+  line-height: 65px;    /*line-heightを使うと勝手に上下の中央ぞろいになる;*/
+  padding: 0 25px;
+  color: white;
+  display: block;    
+   /*aタグはインライン要素であるから、クリックできる範囲が文字上のみだが、ブロック要素にすると要素全体がクリックの対象になる*/
+}
+
+.top-wrapper {
+  width: 100%;
+  padding: 180px 0 100px 0;
+  background-image: url(https://prog-8.com/images/html/advanced/top.png);   /*背景画像の挿入*/
+  background-size: cover;                                             /*背景画像をcoverにすることで全体に拡大*/
+  color: white;
+
+  text-align: center;   /* このCSSでtop-wrapper部分にあるテキスト(htmlで白字のところ)が整理される */
+}
+
+.top-wrapper h1{
+  opacity: 0.7;         /*文字の透明度  opacityを使うと要素全体の透明度が変わる*/
+  font-size: 45px;
+  letter-spacing: 5px;
+}
+
+.btn {                      /* btnクラス  共通部分のCSSを記入*/
+  padding: 8px 24px;        /*ボタン部分は単にa要素の背景に色を入れているだけ*/
+  color: white;
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 40px;      /*ボタン部分の角が丸くなる*/
+}
+
+.btn:hover {
+  opacity: 1.0;
+}
+
+.signup {                   /* signupクラスのCSS*/
+  background-color: #239b76;
+}
+
+.facebook {                 /* facebookクラスのCSS */
+  background-color: #3b5998;
+  margin-right: 10px;
+}
+
+.twitter {                  /* twitterクラスのCSS */
+  background-color: #55acee;
+}
+
+.btn-wrapper {              /* btn-wrapperクラスのCSS */
+  margin: 20px 0 20px 0;
+}
+
+.btn-wrapper p{             /* btn-wrapperクラスの中にある<p>のCSS */
+  margin: 10px 0;
+}
+
+.lesson-wrapper {
+  /**height: 580px;*/   /*高さを固定しているせいでタブレットやスマホ画面だとレイアウトが変わって、レッスン部分を覆いきれないようになるため、これをやめて、親要素が子要素を覆うように、floatを解除する*/
+  padding-bottom: 80px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.clear {
+  clear: left;          /*floatを解除してやって、親要素であるlesson-wrapperがlesson部分を包むように変更*/
+}
+
+.heading {
+  padding: 60px 0 30px 0;
+  color: #5f5d60;
+}
+
+.heading h2 {
+  font-weight: normal;        /*このコマンドで太字がなくなる*/
+}
+
+.heading h3 {
+  font-weight: normal;
+}
+
+.lesson {
+  float: left;
+  width: 25%;
+}
+  
+.lesson-icon {
+  position: relative;         /*position: relative;にすることで他の要素を動かすときの基準点になる(要素の左上)*/
+}
+
+.lesson-icon p {
+  position: absolute;      /*  absolute を入れることで、relativeで置いた基準点から動かすという意味になる*/
+  top: 75px;
+  width: 100%;
+  color: white;
+  opacity: 1.0;
+}
+
+.txt-contents {
+  width: 80%;
+  display: inline-block;
+}
+
+.message-wrapper {
+  border-bottom: 1px solid rgb(94, 70, 66);
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.message {
+  background-color: violet;
+  padding: 15px 40px;
+
+  cursor: pointer;          /*カーソルの形を指定、spanタグはIみたいなやつにデフォルトでなってる*/
+
+  box-shadow: 3px 7px #04140b;    
+  /*ボックスに影をつける、水平→垂直→色の順番、今回の形はbtnクラスでいれたものになっている*/
+}
+
+.message:active {     /*セレクタ:activeにすることで、クリック時の動きを入れられる*/
+  box-shadow: none;   /*noneにすることで、効果がなくなる*/
+  position: relative; 
+  /*absoluteと併用すれば基準点の決定にできるが、単独で使う場合は本来の要素の位置からずらせる*/
+  top: 6px;
+  left: 2px;
+}
+
+footer img {
+  width: 125px;
+}
+
+footer p {
+  color: #b3aeb5;
+  font-size: 12px;
+}
+
+footer {
+  padding-top: 30px;
+}
+
+
